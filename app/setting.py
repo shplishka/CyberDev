@@ -5,5 +5,6 @@ class Config(BaseSettings):
     virustotal_api_key:str = '2d546dfdc96873970d71eb76f81e463d084321f44ce1016629ec3773667cdfd8'
     wappalyzer_base_url:str = 'https://api.wappalyzer.com'
     wappalyzer_api_key:str = 'TWLNY1MK1KmMZvh1dS9H6WGfyZLLBGx2lDBsqHz8'
+    sqlalchemy_database_url = "postgresql://username:password@db:5432/domain"
 
-configuration = Config()
+config = Config()
