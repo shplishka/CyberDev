@@ -1,8 +1,9 @@
-from database import Base
-from sqlalchemy import Column, String, Boolean, Integer
+from ..database.database import Base
+from sqlalchemy import Column, String,Integer
 
 
 class DomainInfo(Base):
     __tablename__ = 'DomainInfo'
-    name = Column(String)
+    id = Column(Integer, primary_key = True, autoincrement = True)
+    name = Column(String, default = '')
     technologies = Column(String, default = '')

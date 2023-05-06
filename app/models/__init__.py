@@ -1,1 +1,1 @@
-from domain_info import DomainInfo
+from .domain_info import DomainInfo

@@ -1,1 +1,2 @@
-from database import engine,SessionLocal,Base
+from .database import Base,engine,SessionLocal
+from .operations import save_domain_info
