@@ -7,4 +7,3 @@ from ..setting import config
 engine = create_engine(config.sqlalchemy_database_url)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
-
