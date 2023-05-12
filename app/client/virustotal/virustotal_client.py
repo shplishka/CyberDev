@@ -19,7 +19,11 @@ class VirustotalClient:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                                 detail=f'domain: {domain_name} not found')
         else:
-            return virustotal_api_response.json()['domain_siblings']
+            if len(virustotal_api_response.json()['domain_siblings'])==0:
+                raise HTTPException(status_code=status.HTTP_204_NO_CONTENT,
+                                detail=f' sub domains: {domain_name} not found')
+            else:
+                return virustotal_api_response.json()['domain_siblings']
 
     def _generate_full_api_v1_url(self,endpoint:str):
         return f'{self._virustotal_base_url}/vtapi/v2/{endpoint}'

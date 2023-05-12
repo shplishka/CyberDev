@@ -15,10 +15,14 @@ async def root():
 
 @router.get("/scan",response_model=List[Domain])
 def scan_subdomains_technologies(domain_name:str)->List[Domain]:
-    sub_domain_list:List[str] = vt_client.get_sub_domains(domain_name)
-    return [Domain(name=subdomain,
-                    technologies=wp_client.get_technologies(subdomain)) 
-                    for subdomain in sub_domain_list]
+    sub_domain_list: List[str] = vt_client.get_sub_domains(domain_name)
+    domain_info_list: List[Domain] = []
+    for sub_domain in sub_domain_list:
+        technologies_list = wp_client.get_technologies(sub_domain)
+        for technology in technologies_list:
+            domain_info = Domain(name=sub_domain, technology=technology)
+            domain_info_list.append(domain_info)
+    return domain_info_list
 
 def create_app():
     app = FastAPI()
